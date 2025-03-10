@@ -1,6 +1,7 @@
 package com.example.trivia;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Collection {
     private ArrayList<Question>arr;
@@ -20,6 +21,7 @@ public class Collection {
         arr.add(q3);
         arr.add(q4);
         arr.add(q5);
+        Collections.shuffle(arr);
     }
     public void initQuestions()
     {

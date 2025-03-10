@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private FbModule fbModule;
     private String backgroundcolor = "";
     private ConstraintLayout ll;
+    String str;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ll = findViewById(R.id.main);
 
-        fbModule = new FbModule(this);
+        fbModule = new FbModule(this);//יוצר עצם מהמחלקה FbModule וכדי לקבל הפנייה לmainactivity כותבים this
 
         launcher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onActivityResult(ActivityResult o) {
                         if (o.getResultCode() == RESULT_OK) {
                             Intent data = o.getData();
-                            String str = data.getStringExtra("color");
+                            str = data.getStringExtra("color");
                             Toast.makeText(MainActivity.this, "" + str, Toast.LENGTH_SHORT).show();
                             fbModule.writeBackgroundColorToFb(str);
                         }
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onStartGame(View view) {
         Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("color",backgroundcolor);
         startActivity(intent);
     }
 
@@ -58,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onInstruction(View view) {
-
+        Intent intent = new Intent(this, Instruction.class);
+        startActivity(intent);
     }
 
     public void setNewColorFromFB(String str) {

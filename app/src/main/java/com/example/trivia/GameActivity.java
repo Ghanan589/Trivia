@@ -1,11 +1,20 @@
 package com.example.trivia;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -15,10 +24,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private Collection collection;
     private Question currentQuestion;
     private int points=0;
+    private LinearLayout ll;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        ll=findViewById(R.id.main2);
+
         collection = new Collection ();
         btna1=findViewById(R.id.btna1);
         btna2=findViewById(R.id.btna2);
@@ -35,6 +50,20 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         tvGameOver.setVisibility(View.INVISIBLE);
         collection.initQuestions();
         nextQuestion();
+
+        Intent intent=getIntent();
+        String str;
+        str=intent.getStringExtra("color");
+        if(str!=null)
+        {
+            setBackgroundColor(str);
+        }
+
+
+
+
+
+
 
     }
 
@@ -104,11 +133,45 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void reset() {
-    this.points=0;
-    collection.initQuestions();
-    tvPoints.setText("Points:  " + 0);
-    tvQuestionNumber.setText("Question number:  " + 1);
-    tvGameOver.setVisibility(View.INVISIBLE);
-    this.nextQuestion();
+        this.points=0;
+        collection.initQuestions();
+        tvPoints.setText("Points:  " + 0);
+        tvQuestionNumber.setText("Question number:  " + 1);
+        tvGameOver.setVisibility(View.INVISIBLE);
+        this.nextQuestion();
     }
+    public void setBackgroundColor(String color)
+    {
+        switch (color)
+        {
+            case "Red":
+            {
+                ll.setBackgroundColor(Color.argb(255,208,51,51));
+                break;
+            }
+            case "Blue":{
+                ll.setBackgroundColor(Color.argb(255,102,102,255));
+                break;
+            }
+            case "Yellow":
+            {
+                ll.setBackgroundColor(Color.argb(255,249,236,51));
+                break;
+
+            }
+            case "Pink":
+            {
+                ll.setBackgroundColor(Color.argb(255,255,102,255));
+                break;
+            }
+            default:
+                ll.setBackgroundColor(Color.WHITE);
+
+
+
+
+        }
+
+    }
+
 }
