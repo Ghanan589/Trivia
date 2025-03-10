@@ -25,7 +25,7 @@ public class FbModule {
                 String str = snapshot.getValue(String.class);
                 if(str !=null)
                 {
-                    ((MainActivity)context).setNewColorFromFB(str);
+                    ((MainActivity)context).setNewColorFromFB(str);//בעזרת context אפשר לקרוא לפעולות
                 }
             }
 

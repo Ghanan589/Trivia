@@ -48,4 +48,5 @@ public class SettingActivity extends AppCompatActivity implements AdapterView.On
         finish(); //closes the activity
 
     }
+
 }
