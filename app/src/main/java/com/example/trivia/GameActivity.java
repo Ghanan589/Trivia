@@ -34,6 +34,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_game);
         ll=findViewById(R.id.main2);
 
+
         collection = new Collection ();
         btna1=findViewById(R.id.btna1);
         btna2=findViewById(R.id.btna2);
