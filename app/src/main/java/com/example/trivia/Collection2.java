@@ -3,10 +3,10 @@ package com.example.trivia;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Collection {
+public class Collection2 {
     private ArrayList<Question>arr;
     private int index;//מספר השאלה הבאה בתור
-    public  Collection()
+    public Collection2()
     {
         arr=new ArrayList<>();
 
@@ -21,6 +21,7 @@ public class Collection {
         arr.add(q3);
         arr.add(q4);
         arr.add(q5);
+        Collections.shuffle(arr);
     }
     public void initQuestions()
     {

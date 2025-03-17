@@ -21,7 +21,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private Button btna1,btna2,btna3,btna4;
     private TextView tvQuestion;
     private TextView tvQuestionNumber,tvPoints,tvGameOver;
-    private Collection collection;
+    private Collection2 collection2;
     private Question currentQuestion;
     private int points=0;
     private LinearLayout ll;
@@ -34,7 +34,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_game);
         ll=findViewById(R.id.main2);
 
-        collection = new Collection ();
+        collection2 = new Collection2 ();
         btna1=findViewById(R.id.btna1);
         btna2=findViewById(R.id.btna2);
         btna3=findViewById(R.id.btna3);
@@ -48,7 +48,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         tvPoints=findViewById(R.id.tvPoints);
         tvGameOver=findViewById(R.id.tvGameOver);
         tvGameOver.setVisibility(View.INVISIBLE);
-        collection.initQuestions();
+        collection2.initQuestions();
         nextQuestion();
 
         Intent intent=getIntent();
@@ -68,9 +68,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void nextQuestion() {
-        if(collection.isNotLastQuestion())
+        if(collection2.isNotLastQuestion())
         {
-            currentQuestion = collection.getNextQuestion();
+            currentQuestion = collection2.getNextQuestion();
             tvQuestion.setText(currentQuestion.getQuestion());
 
             btna1.setText(currentQuestion.getA1());
@@ -123,9 +123,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
     tvPoints.setText("points:  "+points);
-    if(collection.isNotLastQuestion())
+    if(collection2.isNotLastQuestion())
     {
-        tvQuestionNumber.setText("Question number: "+(collection.getIndex() +1));
+        tvQuestionNumber.setText("Question number: "+(collection2.getIndex() +1));
     }
     nextQuestion();
 
@@ -134,7 +134,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     public void reset() {
         this.points=0;
-        collection.initQuestions();
+        collection2.initQuestions();
         tvPoints.setText("Points:  " + 0);
         tvQuestionNumber.setText("Question number:  " + 1);
         tvGameOver.setVisibility(View.INVISIBLE);
